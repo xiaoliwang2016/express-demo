@@ -17,6 +17,16 @@ class Room {
         })
     }
 
+    async getInfoByActivityId(req, res, next){
+        req.checkQuery('activity_id', 'activity_id can not be empty').exists()
+        var errors = await req.getValidationResult()
+        if (!errors.isEmpty()) {
+            return res.status(422).json({ errors: errors.array() });
+        }
+        res.send(req.query)
+        
+    }
+
     async add(req, res, next){
         req.checkBody('activity_name', 'activity_name can not be empty').exists()
         req.checkBody('union_id', 'union_id can not be empty').exists()
@@ -25,8 +35,6 @@ class Room {
             return res.status(422).json({ errors: errors.array() });
         }
         req.body.activity = 'hc-f-' + Math.floor(Math.random() * 1000000).toString()
-        console.log(req.body);
-        
         res.send(req.body)
     }
 
