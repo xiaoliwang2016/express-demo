@@ -1,0 +1,8 @@
+{
+	"image": {
+		"path": "public/upload/image",
+		"mimeType":  ["image/jpeg", "image/png", "image/jpg", "image/gif"],
+		"limit": "2MB",
+		"field": "img"
+	}
+}
