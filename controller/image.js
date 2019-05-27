@@ -2,6 +2,7 @@ var sequelize = require('../db/mysql').sequelize
 var multer = require('multer')
 var path = require('path')
 var config = require('../config/upload').image;
+var PraiseModel = require('../controller/praise')
 var fs = require('fs')
 var gm = require('gm')
 var async = require('async')
@@ -178,6 +179,18 @@ class Image{
             }
         }).then(result => {
             res.status(200).json(result)
+        })
+    }
+
+
+    getDetail(req, res, next){
+        req.checkQuery('pic_id', 'pic_id can not be empty').exists()
+        var errors = req.validationErrors()
+        if(errors){
+            return res.status(422).json(errors)
+        }
+        PraiseModel.getList(req.query.pic_id).then(praiseList => {
+            res.status(200).json(praiseList)
         })
     }
 

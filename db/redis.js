@@ -8,4 +8,8 @@ client.on("error", function (err) {
     console.log(err);
 })
 
+client.on('ready', function(){
+    console.log('redis connect successfully');
+})
+
 module.exports = client

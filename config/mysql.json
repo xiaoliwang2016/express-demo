@@ -1,5 +1,5 @@
 {
-    "database": "activity",
+    "database": "hc_activity",
     "user": "root",
     "pass": "123",
     "dialect": "mysql",
